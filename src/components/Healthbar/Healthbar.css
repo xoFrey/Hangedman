@@ -1,0 +1,17 @@
+.health {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.healthbar {
+  width: 100px;
+  height: 10px;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+
+.hp {
+  background-color: rgb(0, 76, 163);
+  width: 90px;
+  height: 10px;
+}
