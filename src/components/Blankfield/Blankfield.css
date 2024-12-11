@@ -1,0 +1,13 @@
+.blankfield {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  padding-top: 100px;
+  gap: 20px;
+}
+
+.blank {
+  width: 50px;
+  border-bottom: 1px solid black;
+}
