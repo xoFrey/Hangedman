@@ -7,8 +7,7 @@ const Blankfield = ({ pressedKey }) => {
 
   const [guessWord, setGuessWord] = useState("");
   const [guessedLetter, setGuessedLetter] = useState("");
-
-  console.log(guessedLetter);
+  const [correctLetters, setCorrectLetters] = useState([]);
 
   useEffect(() => {
     setGuessWord(Wordlist.words[randomNumber]);
@@ -18,21 +17,38 @@ const Blankfield = ({ pressedKey }) => {
     setGuessedLetter(pressedKey);
   }, [pressedKey]);
 
-  console.log(guessWord);
   const guessWordArray = guessWord.split("");
-  if (guessWordArray.includes(guessedLetter)) {
-    console.log("YAY");
-  } else {
-    console.log("NAY");
-  }
 
+  useEffect(() => {
+    if (guessWordArray.includes(guessedLetter)) {
+      setCorrectLetters((prevLetter) => {
+        if (!prevLetter.includes(guessedLetter)) {
+          return [...prevLetter, guessedLetter];
+        }
+        return prevLetter;
+      });
+    }
+  }, [guessedLetter, guessWordArray]);
+
+  const isWordCorrect = () => {
+    console.log(correctLetters);
+    console.log(guessWord);
+    for (const i of guessWord) {
+      console.log(i);
+      if (correctLetters.includes(i)) {
+        console.log("YES IM IN");
+      }
+    }
+  };
+
+  isWordCorrect();
   return (
     <section className='blankfield'>
-      {guessWordArray.map((item) => (
+      {guessWordArray.map((item, index) => (
         <div
-          key={item.id}
+          key={index}
           className='blank'>
-          <p>{}</p>
+          <p>{correctLetters.includes(item) ? item : ""}</p>
         </div>
       ))}
     </section>
