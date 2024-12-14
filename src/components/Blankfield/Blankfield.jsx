@@ -30,18 +30,24 @@ const Blankfield = ({ pressedKey }) => {
     }
   }, [guessedLetter, guessWordArray]);
 
-  const isWordCorrect = () => {
-    console.log(correctLetters);
-    console.log(guessWord);
-    for (const i of guessWord) {
+  const isTheWordComplete = (guessWordArray, correctLetters) => {
+    const correctLettersCopy = [...correctLetters];
+
+    for (let i = 0; i < guessWordArray.length, i++; ) {
+      const index = correctLettersCopy.indexOf(i);
       console.log(i);
-      if (correctLetters.includes(i)) {
-        console.log("YES IM IN");
+      console.log(correctLettersCopy);
+      if (index !== -1) {
+        correctLettersCopy.splice(index, 1);
+      } else {
+        console.log(correctLettersCopy);
+        return false;
       }
     }
   };
 
-  isWordCorrect();
+  isTheWordComplete(guessWordArray, correctLetters);
+
   return (
     <section className='blankfield'>
       {guessWordArray.map((item, index) => (
